@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Metadatos del Archivo</title>
+    <link rel="icon" href="/SF-icon.png" type="image/png" />
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" type="text/css">
+    <link href="/public/style.css" rel="stylesheet" type="text/css">
+  </head>
+
+  <body>
+    <div class="container">
+      <h1>Proyecto API: Microservicio de Metadatos de Archivos</h1>
+
+      <h2>Uso:</h2>
+      <p>Por favor, sube un archivo...</p>
+
+      <div class="view">
+        <h3 id="output"></h3>
+        <form enctype="multipart/form-data" method="POST" action="/api/fileanalyse">
+          <input id="inputfield" type="file" name="upfile">
+          <input id="button" type="submit" value="Subir">
+        </form>
+      </div>
+    </div>
+
+    <div class="footer">
+      <p>Creado por Santiago Florido</p>
+    </div>
+  </body>
+</html>
