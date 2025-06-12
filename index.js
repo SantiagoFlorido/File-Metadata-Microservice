@@ -5,6 +5,9 @@ require('dotenv').config();
 
 const app = express();
 
+const swaggerUi = require('swagger-ui-express');
+const swaggerDocument = require('./swagger.json');
+
 // Middleware
 app.use(cors());
 app.use('/public', express.static(process.cwd() + '/public'));
@@ -13,6 +16,8 @@ app.use('/public', express.static(process.cwd() + '/public'));
 app.get('/', function (req, res) {
   res.sendFile(process.cwd() + '/views/index.html');
 });
+
+app.use('/api/docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 // Configuración de multer
 const upload = multer({ dest: 'uploads/' });

@@ -1,0 +1,87 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "File Metadata Microservice",
+    "description": "Una API simple para subir un archivo y obtener sus metadatos (nombre, tipo y tamaño).",
+    "version": "1.0.0",
+    "contact": {
+      "name": "Santiago Florido"
+    }
+  },
+  "servers": [
+    {
+      "url": "http://localhost:3000",
+      "description": "Servidor local"
+    }
+  ],
+  "paths": {
+    "/api/fileanalyse": {
+      "post": {
+        "summary": "Subir archivo",
+        "description": "Sube un archivo y recibe los metadatos (nombre, tipo y tamaño).",
+        "operationId": "uploadFile",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "upfile": {
+                    "type": "string",
+                    "format": "binary",
+                    "description": "Archivo a subir"
+                  }
+                },
+                "required": ["upfile"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Archivo analizado correctamente",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "type": "string",
+                      "example": "miarchivo.pdf"
+                    },
+                    "type": {
+                      "type": "string",
+                      "example": "application/pdf"
+                    },
+                    "size": {
+                      "type": "integer",
+                      "example": 123456
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "No se subió ningún archivo",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "No se subió ningún archivo"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {}
+}
